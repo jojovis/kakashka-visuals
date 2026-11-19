@@ -37,11 +37,11 @@ profileTab.onclick=()=>{document.getElementById('kv-profile-pane').style.display
 giftTab.onclick=()=>{document.getElementById('kv-profile-pane').style.display='none';document.getElementById('kv-gifts-pane').style.display='block';giftTab.classList.add('primary');profileTab.classList.remove('primary');loadGiftData()};
 async function loadGiftData(){
 const cooldown=document.getElementById('kv-gift-cooldown'),button=document.getElementById('kv-open-gift'),history=document.getElementById('kv-gift-history');
-const [cd,hist]=await Promise.all([db.from('daily_gift_cooldowns').select('last_claim_at').eq('user_id',user.id).maybeSingle(),db.from('daily_gift_claims').select('prize_key,prize_seconds,created_at').eq('user_id',user.id).order('created_at',{ascending:false}).limit(10)]);
+const [cd,hist]=await Promise.all([db.from('daily_gift_cooldowns').select('last_claim_at,extra_attempts').eq('user_id',user.id).maybeSingle(),db.from('daily_gift_claims').select('prize_key,prize_seconds,created_at').eq('user_id',user.id).order('created_at',{ascending:false}).limit(10)]);
 if(cd.error||hist.error){cooldown.textContent='Не удалось загрузить данные подарков.';return}
-const next=cd.data?new Date(new Date(cd.data.last_claim_at).getTime()+86400000):new Date(0),ready=Date.now()>=next.getTime();
-cooldown.textContent=!active?'Для открытия нужна активная подписка.':ready?'Карточка доступна прямо сейчас!':'Следующая карточка: '+next.toLocaleString('ru-RU');
-button.disabled=!active||!ready;button.textContent=ready?'Открыть карточку':'Уже открыто';
+const next=cd.data?new Date(new Date(cd.data.last_claim_at).getTime()+86400000):new Date(0),extra=Number(cd.data?.extra_attempts||0),ready=Date.now()>=next.getTime();
+cooldown.textContent=!active?'Для открытия нужна активная подписка.':extra>0?'Дополнительных попыток: '+extra+(ready?' · Ежедневная попытка тоже доступна.':' · Ежедневная попытка будет доступна: '+next.toLocaleString('ru-RU')):ready?'Карточка доступна прямо сейчас!':'Следующая карточка: '+next.toLocaleString('ru-RU');
+button.disabled=!active||(!ready&&extra<=0);button.textContent=extra>0?'Открыть дополнительную попытку ('+extra+')':ready?'Открыть карточку':'Уже открыто';
 const labels={'1_hour':'1 час','2_hours':'2 часа','3_hours':'3 часа','5_hours':'5 часов','1_day':'1 день','2_days':'2 дня','30_days':'30 дней','90_days':'90 дней','empty':'Без приза'};
 history.innerHTML=hist.data.length?hist.data.map(x=>'<div style="padding:8px 0;border-bottom:1px solid #49325e"><b>'+esc(labels[x.prize_key]||x.prize_key)+'</b> <span style="float:right;color:#bda9d0">'+new Date(x.created_at).toLocaleString('ru-RU')+'</span></div>').join(''):'Пока нет открытых карточек.';
 }
