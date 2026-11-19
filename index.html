@@ -18,7 +18,7 @@ a{color:inherit;text-decoration:none}
 .wrap{width:min(var(--max),calc(100% - 40px));margin-inline:auto}
 .nav{height:76px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
 .brand{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:800;letter-spacing:.08em}
-.mark{width:34px;height:34px;display:grid;place-items:center;border-radius:11px;background:var(--accent);color:#17111f;font-size:18px;font-weight:800}
+.mark{width:38px;height:38px;display:grid;place-items:center;position:relative;overflow:hidden;border:1px solid #d8c1ff66;border-radius:13px;background:linear-gradient(145deg,#d6bdff 0%,#a879f2 48%,#7547c9 100%);box-shadow:0 5px 22px #9b69ef44,inset 0 1px 0 #ffffff80;color:#17111f;font-size:25px;font-weight:800;font-style:italic;letter-spacing:-.12em;text-shadow:0 1px 0 #fff8}.mark:after{content:"✦";position:absolute;right:3px;top:1px;font-size:9px;font-style:normal;color:#fff;letter-spacing:0;text-shadow:0 1px 5px #6e43b7}
 .navlinks{display:flex;gap:28px;color:var(--muted);font-size:13px}
 .navlinks a:hover,.footer a:hover{color:var(--text)}
 .navbtn,.btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 18px;border:1px solid transparent;border-radius:9px;background:var(--accent);color:#17111f;font-size:13px;font-weight:800;transition:background .18s,transform .18s}
@@ -73,11 +73,15 @@ details p{max-width:720px;margin:12px 0 0;color:var(--muted);font-size:13px;line
 .footer .brand{color:var(--text);font-size:11px}
 @media(max-width:760px){.nav{height:68px}.navlinks,.navbtn{display:none}.hero{grid-template-columns:1fr;gap:30px;padding:72px 0 58px}.hero-note{max-width:480px}.section{padding:64px 0}.section-head{display:block}.section-head>p{margin-top:14px}.features,.prices{grid-template-columns:1fr}.card{min-height:0}.card .btn{margin-top:16px}.contact{display:block;padding:25px;margin-bottom:55px}.contact .btn{margin-top:20px}.footer{padding:22px 0;flex-wrap:wrap}.footer>span{width:100%;order:3}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
+
+#sv-snow{position:fixed;inset:0;width:100%;height:100%;z-index:20;pointer-events:none;opacity:.78}
+@media(prefers-reduced-motion:reduce){#sv-snow{display:none}}
 </style>
 </head>
 <body>
+<canvas id="sv-snow" aria-hidden="true"></canvas>
 <header class="nav wrap">
-<a class="brand" href="#top"><span class="mark">S</span> SUPPORTSVISUALS</a>
+<a class="brand" href="#top"><span class="mark" aria-label="Логотип S">S</span> SUPPORTSVISUALS</a>
 <nav class="navlinks" aria-label="Основная навигация"><a href="#features">Возможности</a><a href="#pricing">Тарифы</a><a href="#faq">Вопросы</a></nav>
 <a class="navbtn" id="sv-open-account" href="#account" onclick="event.preventDefault();document.dispatchEvent(new Event('sv-open-account'))">Личный кабинет</a>
 </header>
@@ -118,6 +122,9 @@ details p{max-width:720px;margin:12px 0 0;color:var(--muted);font-size:13px;line
 <section class="contact wrap" id="contacts"><div><div class="kicker">04 / Поддержка</div><h2>Нужна помощь?</h2><p>Напиши нам, если возникли вопросы с оплатой или доступом.</p></div><a class="btn" href="https://t.me/Bisnesssuport" target="_blank" rel="noopener noreferrer">Написать в Telegram ↗</a></section>
 </main>
 <footer class="footer wrap"><a class="brand" href="#top"><span class="mark">S</span> SUPPORTSVISUALS</a><span>© 2026 SUPPORTSVISUALS</span><a href="#top">Наверх ↑</a></footer>
+<script>
+(()=>{const canvas=document.getElementById('sv-snow');if(!canvas||matchMedia('(prefers-reduced-motion: reduce)').matches)return;const ctx=canvas.getContext('2d');if(!ctx)return;let w=0,h=0,flakes=[];const count=()=>Math.min(95,Math.max(34,Math.round(innerWidth/15)));function resize(){const dpr=Math.min(devicePixelRatio||1,2);w=innerWidth;h=innerHeight;canvas.width=Math.round(w*dpr);canvas.height=Math.round(h*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);flakes=Array.from({length:count()},()=>({x:Math.random()*w,y:Math.random()*h,r:.7+Math.random()*2.1,v:.35+Math.random()*.9,s:.25+Math.random()*.65,a:.25+Math.random()*.55,p:Math.random()*6.28}))}function frame(){ctx.clearRect(0,0,w,h);for(const f of flakes){f.y+=f.v;f.x+=Math.sin(f.p+=.008)*f.s;if(f.y>h+5){f.y=-5;f.x=Math.random()*w}if(f.x>w+5)f.x=-5;if(f.x< -5)f.x=w+5;ctx.beginPath();ctx.arc(f.x,f.y,f.r,0,Math.PI*2);ctx.fillStyle='rgba(239,232,255,'+f.a+')';ctx.fill()}requestAnimationFrame(frame)}addEventListener('resize',resize,{passive:true});resize();frame()})();
+</script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="/account.js?v=14"></script>
 </body></html>
