@@ -9,7 +9,7 @@ const css=document.createElement('style');css.textContent=`
 #sv-account{display:none;position:fixed;inset:0;z-index:1000;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(8px)}
 #sv-account.open{display:flex}
 .sv-shade{position:absolute;inset:0;background:#05030bdf}
-.sv-modal{position:relative;width:min(520px,100%);max-height:88vh;overflow:auto;padding:28px;background:#181822;border:1px solid #353342;border-radius:16px;box-shadow:0 24px 80px #000b;color:#f7f2ff}
+.sv-modal{position:relative;width:min(880px,100%);max-height:90vh;overflow:auto;padding:36px;background:#181822;border:1px solid #353342;border-radius:16px;box-shadow:0 24px 80px #000b;color:#f7f2ff}
 .sv-close{position:absolute;right:15px;top:8px;background:transparent;border:0;color:#fff;font-size:30px;cursor:pointer}
 .sv-modal h2{font-size:clamp(28px,5vw,38px);letter-spacing:-.05em;margin:12px 35px 22px 0}
 .sv-modal h2 span{color:#b58aff}
@@ -34,7 +34,13 @@ const css=document.createElement('style');css.textContent=`
 .sv-prize{display:flex;justify-content:space-between;gap:8px;padding:11px;background:#111119;border:1px solid #393846;border-radius:7px;font-size:12px}
 .sv-prize span{color:#b58aff;font-weight:800}
 .sv-prize b{color:#eee2ff}
-@media(max-width:480px){.sv-modal{padding:22px 18px}.sv-prize-grid{grid-template-columns:1fr}}
+#sv-profile-pane{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;align-items:start}
+#sv-profile-pane>.sv-card{margin:0;min-width:0}
+#sv-profile-pane>.sv-card:first-child,#sv-profile-pane>#sv-admin,#sv-profile-pane>form,#sv-profile-pane>#sv-msg,#sv-profile-pane>details,#sv-profile-pane>button{grid-column:1/-1}
+#sv-profile-pane>.sv-card:nth-child(2){min-height:100%}
+#sv-profile-pane .sv-card{overflow-wrap:anywhere}
+.sv-modal .sv-tabs{max-width:420px}
+@media(max-width:650px){.sv-modal{padding:24px 18px}#sv-profile-pane{grid-template-columns:1fr}#sv-profile-pane>*{grid-column:1/-1}.sv-prize-grid{grid-template-columns:1fr}}
 `;
 document.head.append(css);
 let tab='login';const content=()=>document.getElementById('sv-content');const msg=t=>{const e=document.getElementById('sv-msg');if(e)e.textContent=t||''};
