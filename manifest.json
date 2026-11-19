@@ -1,0 +1,18 @@
+{
+  "name": "SUPPORTSVISUALS",
+  "short_name": "SUPPORTSVISUALS",
+  "description": "Личный кабинет SUPPORTSVISUALS",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#101018",
+  "theme_color": "#101018",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
