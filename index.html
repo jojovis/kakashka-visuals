@@ -1,22 +1,123 @@
 <!doctype html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#08060d"><meta name="description" content="SUPPORTSVISUALS — выбери свой тариф.">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#101018">
+<meta name="description" content="SUPPORTSVISUALS — простой доступ к визуальным возможностям. Выбери тариф и управляй подпиской в личном кабинете.">
 <title>SUPPORTSVISUALS</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#08060d;--panel:#151020;--line:#38264d;--text:#f7f2ff;--muted:#aaa0b8;--purple:#a855f7;--violet:#7c3aed}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:Manrope,Arial,sans-serif;overflow-x:hidden}body:before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse at 18% 10%,#7c3aed24,transparent 35%),radial-gradient(ellipse at 85% 45%,#a855f718,transparent 38%);z-index:-1}.wrap{width:min(1120px,calc(100% - 40px));margin:auto}.nav{height:78px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #ffffff18}.brand{display:flex;align-items:center;gap:11px;color:#fff;text-decoration:none;font-size:13px;font-weight:800;letter-spacing:1.4px}.mark{position:relative;display:grid;place-items:center;width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#d8b4fe,#7c3aed);color:#10091a;font-size:20px;box-shadow:0 0 25px #9333ea66}.mark:before{content:"";position:absolute;top:-5px;left:-2px;right:-2px;height:10px;background:#fff;border-radius:8px 8px 4px 4px;clip-path:polygon(0 55%,16% 15%,31% 42%,48% 0,65% 36%,82% 10%,100% 42%,100% 100%,0 100%)}nav{display:flex;gap:28px}nav a,.footer a{color:#c1b5d1;text-decoration:none;font-size:12px}nav a:hover,.footer a:hover{color:#d8b4fe}.navbtn,.btn{display:inline-flex;align-items:center;justify-content:center;gap:18px;padding:14px 19px;border-radius:8px;background:var(--purple);color:#10091a;text-decoration:none;font-size:12px;font-weight:800;transition:.2s}.btn:hover,.navbtn:hover{transform:translateY(-2px);background:#c084fc}.hero{min-height:580px;display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:30px;padding:65px 0}.eyebrow{font-size:10px;letter-spacing:2.4px;font-weight:800;color:#c084fc;margin-bottom:20px}.eyebrow i{display:inline-block;width:7px;height:7px;border-radius:50%;background:#c084fc;margin-right:8px;box-shadow:0 0 12px #c084fc}h1,h2{font-size:clamp(42px,6vw,74px);line-height:1;letter-spacing:-3px;margin:0;font-weight:800}h1 span,h2 span{color:#b66cff}.lead{max-width:490px;color:var(--muted);font-size:14px;line-height:1.85;margin:25px 0 30px}.actions{display:flex;gap:12px;flex-wrap:wrap}.ghost{background:transparent;color:#eee2ff;border:1px solid var(--line)}.art{height:390px;display:grid;place-items:center;position:relative;background:radial-gradient(ellipse,#8b5cf633,transparent 65%)}.orb{width:190px;height:190px;border-radius:40% 60% 55% 45%;display:grid;place-items:center;background:linear-gradient(140deg,#f3e8ff,#a855f7 48%,#4c1d95);box-shadow:0 0 90px #a855f766,inset 0 0 25px #fff8;transform:rotate(-14deg);animation:float 6s ease-in-out infinite}.orb b{font-size:100px;color:#10091a;transform:rotate(14deg)}.ring{position:absolute;width:340px;height:180px;border:1px solid #c084fc66;border-radius:50%;transform:rotate(-28deg)}.ring.two{width:290px;height:290px;transform:rotate(35deg);border-color:#a855f744}@keyframes float{50%{transform:rotate(-5deg) translateY(-12px)}}.float{position:absolute;padding:13px 16px;background:#1b1229dd;border:1px solid #ffffff25;border-radius:9px;font-size:10px;letter-spacing:1px;box-shadow:0 15px 45px #0008}.float.one{top:48px;left:0}.float.two{bottom:45px;right:0}.ticker{border-block:1px solid var(--line);padding:17px 0;text-align:center;color:#a99bb9;letter-spacing:3px;font-size:10px}.ticker span{color:#c084fc;padding:0 18px}.section{padding:100px 0}.head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:42px}.head h2{font-size:clamp(35px,4.5vw,55px)}.head p{max-width:330px;color:var(--muted);font-size:13px;line-height:1.8;margin:0}.features,.prices{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.feature,.card{position:relative;background:linear-gradient(145deg,#1b1228,#100b18);border:1px solid var(--line);border-radius:12px;padding:27px;overflow:hidden}.feature{min-height:210px}.ico{position:relative;display:inline-grid;place-items:center;font-size:27px;color:#c084fc;margin:8px 0 26px;text-shadow:0 0 18px #c084fc88}.ico:before{content:"";position:absolute;left:-5px;right:-5px;top:-10px;height:10px;background:linear-gradient(#fff,#d9cde9);border-radius:8px 8px 4px 4px;clip-path:polygon(0 48%,12% 18%,25% 32%,39% 0,55% 27%,70% 8%,84% 32%,100% 16%,100% 100%,0 100%)}.feature h3{font-size:13px;letter-spacing:1px}.feature p,.desc{color:var(--muted);font-size:12px;line-height:1.8}.pricing{background:#0e0a15;border-block:1px solid #ffffff12}.card{min-height:390px}.card.best{border-color:#a855f799;background:linear-gradient(155deg,#28163e,#120d1c 70%)}.tag{position:absolute;right:15px;top:15px;background:linear-gradient(135deg,#c084fc,#7c3aed);color:#fff;font-size:8px;font-weight:800;padding:7px 9px;border-radius:5px}.label{font-size:9px;letter-spacing:2px;color:#c084fc;font-weight:800}.card h3{font-size:20px;margin:17px 0 5px}.desc{min-height:40px}.price{font-size:50px;font-weight:800;letter-spacing:-3px;margin-top:20px}.price small{font-size:22px;color:#c084fc}.period{font-size:10px;color:#998ba9}.card ul{list-style:none;padding:18px 0;margin:20px 0;border-top:1px solid var(--line)}.card li{font-size:11px;color:#d4c9df;margin:10px 0}.card li:before{content:"✓";color:#c084fc;margin-right:9px}.card .btn{width:100%;margin-top:5px}.fine{color:#857891;font-size:10px;margin-top:22px}.faq{max-width:850px}.faq details{border-bottom:1px solid var(--line);padding:20px 3px}.faq summary{cursor:pointer;list-style:none;font-weight:700;font-size:14px;display:flex;justify-content:space-between}.faq summary::-webkit-details-marker{display:none}.faq summary span{color:#c084fc;font-size:20px}.faq details p{color:var(--muted);font-size:12px;line-height:1.8;max-width:700px}.contact{margin:0 auto 85px;padding:42px;border:1px solid #a855f766;border-radius:13px;background:radial-gradient(ellipse at 85% 15%,#9333ea30,transparent 48%),#151020;display:flex;align-items:center;justify-content:space-between;gap:20px}.contact h2{font-size:clamp(34px,4vw,52px)}.contact p{color:var(--muted);font-size:12px}.footer{height:90px;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;color:#81758d;font-size:10px}.snow{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:10}.flake{position:absolute;top:-15px;color:#f7f1ff;text-shadow:0 0 8px #d8b4fe;opacity:.75;animation:fall linear infinite}@keyframes fall{to{transform:translate3d(var(--drift),110vh,0) rotate(360deg)}}@media(max-width:760px){nav,.navbtn{display:none}.hero{grid-template-columns:1fr;padding:70px 0 35px}.art{height:300px}.orb{width:150px;height:150px}.orb b{font-size:76px}.ring{width:280px;height:145px}.ring.two{width:240px;height:240px}.section{padding:75px 0}.head{display:block}.head p{margin-top:18px}.features,.prices{grid-template-columns:1fr}.card{min-height:0}.contact{display:block;padding:28px;margin-bottom:55px}.contact .btn{margin-top:15px}.footer{gap:15px;flex-wrap:wrap;height:auto;padding:25px 0}.footer>span{width:100%;order:3}h1,h2{letter-spacing:-2px}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;scroll-behavior:auto!important}}
-</style></head>
-<body><div class="snow" aria-hidden="true"></div>
-<header class="nav wrap"><a class="brand" href="#top"><span class="mark">S</span>SUPPORTS <span style="color:#b99bcf">VISUALS</span></a><nav><a href="#features">Возможности</a><a href="#pricing">Тарифы</a><a href="#faq">FAQ</a></nav><a class="navbtn" id="sv-open-account" href="#account" onclick="event.preventDefault();document.dispatchEvent(new Event('sv-open-account'))">Личный кабинет ↗</a></header>
-<main id="top"><section class="hero wrap"><div><div class="eyebrow"><i></i> DIGITAL EXPERIENCE · 2026</div><h1>ТВОЙ СТИЛЬ.<br><span>ТВОИ ПРАВИЛА.</span></h1><p class="lead">SUPPORTSVISUALS — прокачай свой игровой опыт. Больше контроля, больше стиля, больше возможностей.</p><div class="actions"><a class="btn" href="#pricing">Посмотреть тарифы ↗</a><a class="btn ghost" href="#features">Узнать больше ↓</a></div></div><div class="art"><div class="ring"></div><div class="ring two"></div><div class="orb"><b>K</b></div><div class="float one">VISUAL MODE · ACTIVE ✦</div><div class="float two">YOUR ACCESS · UNLIMITED*</div></div></section>
-<div class="ticker">VISUALS THAT HIT DIFFERENT <span>✳</span> PLAY YOUR WAY <span>✳</span> SUPPORTSVISUALS <span>✳</span> WINTER EDITION</div>
-<section class="section wrap" id="features"><div class="head"><div><div class="eyebrow">01 / ВОЗМОЖНОСТИ</div><h2>БОЛЬШЕ, ЧЕМ<br><span>ПРОСТО ВИЗУАЛ.</span></h2></div><p>Всё самое важное — в одном месте. Выбирай подходящий доступ и открывай новые возможности.</p></div><div class="features"><article class="feature"><div class="ico">◈</div><h3>ВИЗУАЛЬНЫЙ СТИЛЬ</h3><p>Настрой внешний вид под себя и выделяйся среди остальных.</p></article><article class="feature"><div class="ico">⌘</div><h3>УДОБСТВО</h3><p>Продуманный интерфейс и быстрый доступ к нужным функциям.</p></article><article class="feature"><div class="ico">✳</div><h3>ОБНОВЛЕНИЯ</h3><p>Следи за развитием проекта и получай новые возможности.</p></article></div></section>
-<section class="pricing" id="pricing"><div class="section wrap"><div class="head"><div><div class="eyebrow">02 / ТАРИФЫ</div><h2>ВЫБИРАЙ СВОЙ<br><span>УРОВЕНЬ ДОСТУПА.</span></h2></div><p>Простые цены без скрытых условий. Один платёж — выбранный период доступа.</p></div><div class="prices"><article class="card"><div class="label">STARTER</div><h3>1 МЕСЯЦ</h3><p class="desc">Попробуй все возможности проекта.</p><div class="price">100 <small>₽</small></div><div class="period">30 дней доступа</div><ul><li>Доступ к функциям проекта</li><li>Обновления в течение срока</li><li>Поддержка пользователей</li></ul><a class="btn ghost" href="https://funpay.com/lots/offer?id=82658050" target="_blank" rel="noopener noreferrer">Купить на FunPay ↗</a></article><article class="card best"><div class="tag">ВЫГОДНЫЙ ВЫБОР</div><div class="label">PRO</div><h3>3 МЕСЯЦА</h3><p class="desc">Больше времени — тот же комфорт.</p><div class="price">300 <small>₽</small></div><div class="period">90 дней доступа</div><ul><li>Доступ к функциям проекта</li><li>Обновления в течение срока</li><li>Поддержка пользователей</li></ul><a class="btn" href="https://funpay.com/lots/offer?id=82658145" target="_blank" rel="noopener noreferrer">Купить на FunPay ↗</a></article><article class="card"><div class="label">LIFETIME</div><h3>НАВСЕГДА</h3><p class="desc">Один раз оплатил — доступ остаётся.</p><div class="price">600 <small>₽</small></div><div class="period">Пожизненный доступ*</div><ul><li>Доступ к функциям проекта</li><li>Будущие обновления проекта</li><li>Поддержка пользователей</li></ul><a class="btn ghost" href="https://funpay.com/lots/offer?id=82658202" target="_blank" rel="noopener noreferrer">Купить на FunPay ↗</a></article></div><p class="fine">*Пожизненный доступ действует в рамках срока существования проекта. Условия доступа уточняются у администрации.</p></div></section>
-<section class="section wrap faq" id="faq"><div class="head"><div><div class="eyebrow">03 / FAQ</div><h2>ЕСТЬ <span>ВОПРОСЫ?</span></h2></div><p>Коротко ответили на то, что обычно интересует перед покупкой.</p></div><details><summary>Как купить доступ?<span>＋</span></summary><p>Выбери тариф и напиши администрации в Telegram. После подтверждения оплаты тебе выдадут доступ.</p></details><details><summary>Чем отличаются тарифы?<span>＋</span></summary><p>Только сроком доступа: 1 месяц, 3 месяца или навсегда.</p></details><details><summary>Как продлить доступ?<span>＋</span></summary><p>Напиши администрации до окончания срока действия текущего тарифа.</p></details></section>
-<section class="contact wrap" id="contacts"><div><div class="eyebrow">04 / НАЧНИ СЕЙЧАС</div><h2>ГОТОВ К<br><span>НОВОМУ УРОВНЮ?</span></h2><p>Выбери тариф и присоединяйся к SUPPORTSVISUALS.</p></div><a class="btn" href="https://t.me/Bisnesssuport" target="_blank" rel="noopener noreferrer">Написать в Telegram ↗</a></section></main>
-<footer class="footer wrap"><a class="brand" href="#top"><span class="mark">S</span>SUPPORTSVISUALS</a><span>© 2026 SUPPORTSVISUALS</span><a href="#top">НАВЕРХ ↑</a></footer>
-<script>const layer=document.querySelector('.snow');if(layer&&!matchMedia('(prefers-reduced-motion: reduce)').matches){for(let i=0;i<38;i++){const f=document.createElement('span');f.className='flake';f.textContent=i%5===0?'✧':'•';f.style.left=Math.random()*100+'%';f.style.fontSize=5+Math.random()*9+'px';f.style.animationDuration=9+Math.random()*16+'s';f.style.animationDelay=-Math.random()*20+'s';f.style.setProperty('--drift',(-40+Math.random()*80)+'px');layer.appendChild(f)}}</script><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="/account.js?v=12"></script>
+:root{color-scheme:dark;--bg:#101018;--surface:#181822;--surface2:#20202c;--line:#30303e;--text:#f5f4fa;--muted:#a5a3b3;--accent:#b58aff;--accent2:#9563ed;--max:1080px}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Manrope,system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.wrap{width:min(var(--max),calc(100% - 40px));margin-inline:auto}
+.nav{height:76px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:800;letter-spacing:.08em}
+.mark{width:34px;height:34px;display:grid;place-items:center;border-radius:11px;background:var(--accent);color:#17111f;font-size:18px;font-weight:800}
+.navlinks{display:flex;gap:28px;color:var(--muted);font-size:13px}
+.navlinks a:hover,.footer a:hover{color:var(--text)}
+.navbtn,.btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 18px;border:1px solid transparent;border-radius:9px;background:var(--accent);color:#17111f;font-size:13px;font-weight:800;transition:background .18s,transform .18s}
+.navbtn:hover,.btn:hover{background:#c7a8ff;transform:translateY(-1px)}
+.btn.secondary{background:transparent;border-color:var(--line);color:var(--text)}
+.btn.secondary:hover{border-color:var(--accent);background:var(--surface2)}
+.hero{padding:100px 0 90px;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(260px,.8fr);align-items:center;gap:56px}
+.kicker{color:var(--accent);font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase}
+h1,h2,h3,p{margin-top:0}
+h1{max-width:700px;margin:16px 0 20px;font-size:clamp(42px,6vw,70px);line-height:1.04;letter-spacing:-.055em}
+h1 span,h2 span{color:var(--accent)}
+.lead{max-width:570px;margin-bottom:28px;color:var(--muted);font-size:16px;line-height:1.8}
+.actions{display:flex;flex-wrap:wrap;gap:12px}
+.hero-note{padding:26px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(145deg,#20202c,#171720)}
+.hero-note .symbol{width:48px;height:48px;margin-bottom:28px;display:grid;place-items:center;border-radius:14px;background:#302444;color:var(--accent);font-size:24px}
+.hero-note strong{display:block;margin-bottom:8px;font-size:16px}
+.hero-note p{margin:0;color:var(--muted);font-size:13px;line-height:1.8}
+.section{padding:82px 0}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:28px;margin-bottom:32px}
+h2{margin:10px 0 0;font-size:clamp(32px,4.5vw,48px);line-height:1.1;letter-spacing:-.045em}
+.section-head>p{max-width:360px;margin:0;color:var(--muted);font-size:13px;line-height:1.8}
+.features,.prices{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.feature,.card{padding:24px;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
+.feature .icon{width:40px;height:40px;display:grid;place-items:center;margin-bottom:22px;border-radius:11px;background:#2a2238;color:var(--accent);font-size:19px}
+.feature h3{margin-bottom:8px;font-size:15px}
+.feature p,.desc{margin:0;color:var(--muted);font-size:13px;line-height:1.8}
+.pricing{border-block:1px solid var(--line);background:#13131c}
+.card{position:relative;display:flex;flex-direction:column;min-height:370px}
+.card.best{border-color:var(--accent);background:#211b2c}
+.tag{position:absolute;top:18px;right:18px;padding:5px 9px;border-radius:6px;background:var(--accent);color:#17111f;font-size:9px;font-weight:800}
+.label{color:var(--accent);font-size:10px;font-weight:800;letter-spacing:.13em}
+.card h3{margin:12px 0 6px;font-size:21px}
+.price{margin-top:22px;font-size:46px;font-weight:800;letter-spacing:-.06em;line-height:1.1}
+.price small{color:var(--accent);font-size:22px}
+.period{margin-top:6px;color:var(--muted);font-size:12px}
+.card ul{padding:16px 0 0;margin:20px 0;border-top:1px solid var(--line);list-style:none}
+.card li{margin:9px 0;color:#d8d6e1;font-size:12px}
+.card li:before{content:"✓";margin-right:9px;color:var(--accent)}
+.card .btn{width:100%;margin-top:auto}
+.fine{margin:18px 0 0;color:var(--muted);font-size:11px}
+.faq{max-width:850px}
+details{padding:18px 0;border-bottom:1px solid var(--line)}
+summary{display:flex;justify-content:space-between;gap:20px;cursor:pointer;list-style:none;font-size:14px;font-weight:700}
+summary::-webkit-details-marker{display:none}
+summary:after{content:"+";color:var(--accent);font-size:20px;line-height:1}
+details[open] summary:after{content:"−"}
+details p{max-width:720px;margin:12px 0 0;color:var(--muted);font-size:13px;line-height:1.8}
+.contact{margin:20px auto 80px;padding:34px;border:1px solid var(--line);border-radius:16px;background:var(--surface);display:flex;align-items:center;justify-content:space-between;gap:24px}
+.contact h2{font-size:clamp(28px,4vw,42px)}
+.contact p{margin:10px 0 0;color:var(--muted);font-size:13px}
+.footer{min-height:82px;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:18px;color:var(--muted);font-size:11px}
+.footer .brand{color:var(--text);font-size:11px}
+@media(max-width:760px){.nav{height:68px}.navlinks,.navbtn{display:none}.hero{grid-template-columns:1fr;gap:30px;padding:72px 0 58px}.hero-note{max-width:480px}.section{padding:64px 0}.section-head{display:block}.section-head>p{margin-top:14px}.features,.prices{grid-template-columns:1fr}.card{min-height:0}.card .btn{margin-top:16px}.contact{display:block;padding:25px;margin-bottom:55px}.contact .btn{margin-top:20px}.footer{padding:22px 0;flex-wrap:wrap}.footer>span{width:100%;order:3}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
+</style>
+</head>
+<body>
+<header class="nav wrap">
+<a class="brand" href="#top"><span class="mark">S</span> SUPPORTSVISUALS</a>
+<nav class="navlinks" aria-label="Основная навигация"><a href="#features">Возможности</a><a href="#pricing">Тарифы</a><a href="#faq">Вопросы</a></nav>
+<a class="navbtn" id="sv-open-account" href="#account" onclick="event.preventDefault();document.dispatchEvent(new Event('sv-open-account'))">Личный кабинет</a>
+</header>
+<main id="top">
+<section class="hero wrap">
+<div>
+<div class="kicker">SUPPORTSVISUALS · 2026</div>
+<h1>Всё нужное.<br><span>Ничего лишнего.</span></h1>
+<p class="lead">Простой способ получить доступ к визуальным возможностям проекта. Выбери тариф, активируй подписку и управляй доступом в личном кабинете.</p>
+<div class="actions"><a class="btn" href="#pricing">Выбрать тариф</a><a class="btn secondary" href="#features">Подробнее</a></div>
+</div>
+<aside class="hero-note"><div class="symbol">✳</div><strong>Просто начать</strong><p>Понятные тарифы, удобный личный кабинет и поддержка, если понадобится помощь.</p></aside>
+</section>
+<section class="section wrap" id="features">
+<div class="section-head"><div><div class="kicker">01 / Возможности</div><h2>Просто и <span>удобно.</span></h2></div><p>Сосредоточились на главном: быстрый доступ, понятное управление и помощь по вопросам.</p></div>
+<div class="features">
+<article class="feature"><div class="icon">◈</div><h3>Визуальные возможности</h3><p>Используй возможности проекта и настрой опыт под себя.</p></article>
+<article class="feature"><div class="icon">⌘</div><h3>Личный кабинет</h3><p>Проверяй подписку, активируй код и управляй аккаунтом в одном месте.</p></article>
+<article class="feature"><div class="icon">✦</div><h3>Поддержка</h3><p>Если возникнут вопросы с покупкой или доступом, мы поможем.</p></article>
+</div>
+</section>
+<section class="pricing" id="pricing"><div class="section wrap">
+<div class="section-head"><div><div class="kicker">02 / Тарифы</div><h2>Выбери свой <span>доступ.</span></h2></div><p>Три понятных варианта. Выбирай срок, который подходит именно тебе.</p></div>
+<div class="prices">
+<article class="card"><div class="label">STARTER</div><h3>30 дней</h3><p class="desc">Попробуй все возможности проекта.</p><div class="price">100 <small>₽</small></div><div class="period">Доступ на 1 месяц</div><ul><li>Доступ к функциям проекта</li><li>Обновления в течение срока</li><li>Поддержка пользователей</li></ul><a class="btn secondary" href="https://funpay.com/lots/offer?id=82658050" target="_blank" rel="noopener noreferrer">Купить на FunPay ↗</a></article>
+<article class="card best"><div class="tag">ПОПУЛЯРНЫЙ</div><div class="label">PRO</div><h3>90 дней</h3><p class="desc">Больше времени — тот же комфорт.</p><div class="price">300 <small>₽</small></div><div class="period">Доступ на 3 месяца</div><ul><li>Доступ к функциям проекта</li><li>Обновления в течение срока</li><li>Поддержка пользователей</li></ul><a class="btn" href="https://funpay.com/lots/offer?id=82658145" target="_blank" rel="noopener noreferrer">Купить на FunPay ↗</a></article>
+<article class="card"><div class="label">LIFETIME</div><h3>Навсегда</h3><p class="desc">Один платёж — бессрочный доступ.</p><div class="price">600 <small>₽</small></div><div class="period">Пожизненный доступ*</div><ul><li>Доступ к функциям проекта</li><li>Будущие обновления проекта</li><li>Поддержка пользователей</li></ul><a class="btn secondary" href="https://funpay.com/lots/offer?id=82658202" target="_blank" rel="noopener noreferrer">Купить на FunPay ↗</a></article>
+</div>
+<p class="fine">*Пожизненный доступ действует в рамках срока существования проекта.</p>
+</div></section>
+<section class="section wrap faq" id="faq">
+<div class="section-head"><div><div class="kicker">03 / Вопросы и ответы</div><h2>Остались <span>вопросы?</span></h2></div><p>Коротко о покупке, активации и продлении доступа.</p></div>
+<details><summary>Как купить доступ?</summary><p>Выбери тариф и нажми «Купить на FunPay». После оплаты следуй инструкциям продавца, чтобы получить код или активировать доступ.</p></details>
+<details><summary>Как активировать подписку?</summary><p>Открой личный кабинет, войди или создай аккаунт и введи полученный код активации.</p></details>
+<details><summary>Чем отличаются тарифы?</summary><p>Только сроком доступа: 30 дней, 90 дней или бессрочно.</p></details>
+<details><summary>Где посмотреть срок подписки?</summary><p>Войди в личный кабинет — текущий статус и срок действия отображаются в профиле.</p></details>
+</section>
+<section class="contact wrap" id="contacts"><div><div class="kicker">04 / Поддержка</div><h2>Нужна помощь?</h2><p>Напиши нам, если возникли вопросы с оплатой или доступом.</p></div><a class="btn" href="https://t.me/Bisnesssuport" target="_blank" rel="noopener noreferrer">Написать в Telegram ↗</a></section>
+</main>
+<footer class="footer wrap"><a class="brand" href="#top"><span class="mark">S</span> SUPPORTSVISUALS</a><span>© 2026 SUPPORTSVISUALS</span><a href="#top">Наверх ↑</a></footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="/account.js?v=13"></script>
 </body></html>
