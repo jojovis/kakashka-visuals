@@ -1,6 +1,7 @@
 (() => {
 const URL='https://uaenplgzrrymroozeiwt.supabase.co';
 const KEY='sb_publishable_IkFRP8vNV-jaIWPlZt8YUA_lLu1qXes';
+const APP_URL='https://supportsvisuals.vercel.app';
 const db=window.supabase.createClient(URL,KEY);
 const esc=s=>String(s||'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('\"','&quot;').replaceAll(String.fromCharCode(39),'&#39;');
 const panel=document.createElement('div');panel.id='sv-account';
@@ -48,8 +49,8 @@ function open(){panel.style.cssText='';const modal=panel.querySelector('.sv-moda
 function field(label,name,type){return '<label>'+label+'<input name="'+name+'" type="'+type+'" required></label>'}
 function renderAuth(){content().innerHTML='<div><button id="sv-login" class="'+(tab==='login'?'primary':'')+'">Вход</button><button id="sv-register" class="'+(tab==='register'?'primary':'')+'">Регистрация</button></div><form id="sv-auth">'+field('Email','email','email')+field('Пароль','password','password')+'<button class="primary">'+(tab==='login'?'Войти':'Создать аккаунт')+'</button></form><div id="sv-msg" class="sv-msg"></div>'+(tab==='login'?'<button id="sv-reset">Сбросить пароль</button>':'')+'<p class="sv-msg">При регистрации может потребоваться подтверждение email.</p>';
 document.getElementById('sv-login').onclick=()=>{tab='login';renderAuth()};document.getElementById('sv-register').onclick=()=>{tab='register';renderAuth()};
-document.getElementById('sv-auth').onsubmit=async e=>{e.preventDefault();const f=new FormData(e.target);const email=f.get('email'),password=f.get('password');msg('Подождите...');const r=tab==='login'?await db.auth.signInWithPassword({email,password}):await db.auth.signUp({email,password,options:{emailRedirectTo:location.origin}});if(r.error)return msg(r.error.message);if(tab==='register'&&!r.data.session)return msg('Проверь почту и подтверди регистрацию.');await render()};
-const reset=document.getElementById('sv-reset');if(reset)reset.onclick=async()=>{const email=document.querySelector('#sv-auth [name=email]').value;if(!email)return msg('Введи email');const r=await db.auth.resetPasswordForEmail(email,{redirectTo:location.origin});msg(r.error?r.error.message:'Ссылка отправлена на почту')};}
+document.getElementById('sv-auth').onsubmit=async e=>{e.preventDefault();const f=new FormData(e.target);const email=f.get('email'),password=f.get('password');msg('Подождите...');const r=tab==='login'?await db.auth.signInWithPassword({email,password}):await db.auth.signUp({email,password,options:{emailRedirectTo:APP_URL}});if(r.error)return msg(r.error.message);if(tab==='register'&&!r.data.session)return msg('Проверь почту и подтверди регистрацию.');await render()};
+const reset=document.getElementById('sv-reset');if(reset)reset.onclick=async()=>{const email=document.querySelector('#sv-auth [name=email]').value;if(!email)return msg('Введи email');const r=await db.auth.resetPasswordForEmail(email,{redirectTo:APP_URL});msg(r.error?r.error.message:'Ссылка отправлена на почту')};}
 async function render(){
 const u=await db.auth.getUser();
 if(!u.data.user)return renderAuth();
