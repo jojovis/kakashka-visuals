@@ -5,21 +5,38 @@ const db=window.supabase.createClient(URL,KEY);
 const esc=s=>String(s||'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('\"','&quot;').replaceAll(String.fromCharCode(39),'&#39;');
 const panel=document.createElement('div');panel.id='sv-account';
 panel.innerHTML='<div class="sv-shade"></div><section class="sv-modal"><button class="sv-close">×</button><div class="eyebrow">SUPPORTSVISUALS / ACCOUNT</div><h2>ЛИЧНЫЙ <span>КАБИНЕТ</span></h2><div id="sv-content">Загрузка...</div></section>';document.body.append(panel);
-const css=document.createElement('style');css.textContent='#sv-account{display:none;position:fixed;inset:0;z-index:1000;align-items:center;justify-content:center;padding:16px}#sv-account.open{display:flex}.sv-shade{position:absolute;inset:0;background:#05030bdf}.sv-modal{position:relative;width:min(560px,100%);max-height:88vh;overflow:auto;padding:30px;background:#120d1c;border:1px solid #6d3b94;border-radius:14px;box-shadow:0 25px 90px #000b}.sv-close{position:absolute;right:15px;top:8px;background:none;border:0;color:#fff;font-size:30px;cursor:pointer}.sv-modal h2{font-size:clamp(30px,6vw,42px);margin:12px 35px 22px 0}.sv-modal h2 span{color:#b66cff}.sv-modal input,.sv-modal select{display:block;width:100%;margin:7px 0 14px;padding:12px;background:#0b0811;border:1px solid #49325e;border-radius:7px;color:#fff}.sv-modal label{display:block;color:#cbbbd9;font-size:11px}.sv-modal button{padding:11px 14px;border:1px solid #55366e;border-radius:7px;background:#241733;color:#fff;cursor:pointer;margin:5px 5px 5px 0}.sv-modal button.primary{background:#a855f7;color:#10091a}.sv-msg{color:#d8b4fe;font-size:12px;white-space:pre-wrap}.sv-card{padding:15px;margin:12px 0;background:#1b1228;border:1px solid #38264d;border-radius:9px;color:#cbbbd9;font-size:12px}.sv-code{font-family:monospace;color:#d8b4fe;word-break:break-all}.sv-table{width:100%;font-size:10px;border-collapse:collapse}.sv-table td,.sv-table th{padding:7px 4px;text-align:left;border-bottom:1px solid #49325e}.sv-modal{background:radial-gradient(ellipse at 90% 0%,#9333ea30,transparent 42%),linear-gradient(145deg,#1b1228,#0e0916);border:1px solid #a855f7;box-shadow:0 0 0 1px #ffffff08,0 25px 90px #000d,0 0 55px #9333ea22}.sv-modal:before{content:"";position:absolute;left:22px;right:22px;top:0;height:2px;background:linear-gradient(90deg,transparent,#c084fc,transparent)}.sv-modal .eyebrow{color:#c084fc;letter-spacing:2.6px}.sv-modal h2{letter-spacing:-2px;text-transform:uppercase}.sv-modal input:focus,.sv-modal select:focus{outline:none;border-color:#c084fc;box-shadow:0 0 0 3px #a855f722}.sv-modal button.primary{border-color:#c084fc;background:linear-gradient(135deg,#d8b4fe,#a855f7);font-weight:800}.sv-modal .sv-close:hover{color:#c084fc}.sv-modal form{margin-top:16px}
-#sv-account{backdrop-filter:blur(8px)}
-.sv-modal{width:min(520px,100%);padding:28px;border:1px solid #353342;border-radius:16px;background:#181822;box-shadow:0 24px 80px #000b}
-.sv-modal:before{display:none}
+const css=document.createElement('style');css.textContent=`
+#sv-account{display:none;position:fixed;inset:0;z-index:1000;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(8px)}
+#sv-account.open{display:flex}
+.sv-shade{position:absolute;inset:0;background:#05030bdf}
+.sv-modal{position:relative;width:min(520px,100%);max-height:88vh;overflow:auto;padding:28px;background:#181822;border:1px solid #353342;border-radius:16px;box-shadow:0 24px 80px #000b;color:#f7f2ff}
+.sv-close{position:absolute;right:15px;top:8px;background:transparent;border:0;color:#fff;font-size:30px;cursor:pointer}
+.sv-modal h2{font-size:clamp(28px,5vw,38px);letter-spacing:-.05em;margin:12px 35px 22px 0}
+.sv-modal h2 span{color:#b58aff}
 .sv-modal .eyebrow{color:#b58aff;letter-spacing:.14em}
-.sv-modal h2{font-size:clamp(28px,5vw,38px);letter-spacing:-.05em}
-.sv-modal input,.sv-modal select{padding:13px 14px;border:1px solid #393846;border-radius:9px;background:#111119}
-.sv-modal button{border:1px solid #393846;border-radius:9px;background:#22222e}
-.sv-modal button.primary{border-color:#b58aff;background:#b58aff;color:#17111f}
-.sv-modal .sv-card{border:1px solid #353342;border-radius:12px;background:#20202c}
+.sv-modal input,.sv-modal select{display:block;width:100%;box-sizing:border-box;margin:7px 0 14px;padding:13px 14px;background:#111119;border:1px solid #393846;border-radius:9px;color:#fff}
+.sv-modal input:focus,.sv-modal select:focus{outline:none;border-color:#b58aff;box-shadow:0 0 0 3px #b58aff22}
+.sv-modal label{display:block;color:#cbbbd9;font-size:11px}
+.sv-modal button{padding:11px 14px;border:1px solid #393846;border-radius:9px;background:#22222e;color:#fff;cursor:pointer;margin:5px 5px 5px 0}
+.sv-modal button.primary{border-color:#b58aff;background:#b58aff;color:#17111f;font-weight:800}
+.sv-modal button:disabled{opacity:.45;cursor:not-allowed}
+.sv-msg{color:#d8b4fe;font-size:12px;white-space:pre-wrap}
+.sv-card{padding:15px;margin:12px 0;background:#20202c;border:1px solid #353342;border-radius:12px;color:#cbbbd9;font-size:12px}
+.sv-code{font-family:monospace;color:#d8b4fe;word-break:break-all}
+.sv-table{width:100%;font-size:10px;border-collapse:collapse}
+.sv-table td,.sv-table th{padding:7px 4px;text-align:left;border-bottom:1px solid #393846}
 .sv-modal a{color:#c8aaff}
-.sv-modal .sv-close{background:transparent;border:0}
-.sv-modal .sv-close:hover{color:#b58aff}
-.sv-modal .sv-tabs button.primary{background:#b58aff;color:#17111f}
-';document.head.append(css);
+.sv-modal form{margin-top:16px}
+.sv-tabs{display:flex;gap:8px;margin:0 0 16px}
+.sv-tabs button{flex:1}
+.sv-tabs button:not(.primary){background:#111119}
+.sv-prize-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:14px}
+.sv-prize{display:flex;justify-content:space-between;gap:8px;padding:11px;background:#111119;border:1px solid #393846;border-radius:7px;font-size:12px}
+.sv-prize span{color:#b58aff;font-weight:800}
+.sv-prize b{color:#eee2ff}
+@media(max-width:480px){.sv-modal{padding:22px 18px}.sv-prize-grid{grid-template-columns:1fr}}
+`;
+document.head.append(css);
 let tab='login';const content=()=>document.getElementById('sv-content');const msg=t=>{const e=document.getElementById('sv-msg');if(e)e.textContent=t||''};
 function open(){panel.style.cssText='';const modal=panel.querySelector('.sv-modal');modal.style.cssText='';panel.classList.add('open');render().catch(err=>{content().innerHTML='<p class="sv-msg">Ошибка: '+esc(err.message)+'</p>';});}function close(){panel.classList.remove('open');panel.style.cssText='display:none!important'}panel.querySelector('.sv-close').onclick=close;panel.querySelector('.sv-shade').onclick=close;
 function field(label,name,type){return '<label>'+label+'<input name="'+name+'" type="'+type+'" required></label>'}
