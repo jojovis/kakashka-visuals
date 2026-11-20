@@ -241,7 +241,7 @@ a:focus-visible,button:focus-visible{outline:2px solid #d7bdff;outline-offset:4p
 <script>
 (()=>{const host=document.getElementById('sv-news-list');if(!host||!window.supabase)return;const db=window.supabase.createClient('https://uaenplgzrrymroozeiwt.supabase.co','sb_publishable_IkFRP8vNV-jaIWPlZt8YUA_lLu1qXes');db.from('project_news').select('title,body,created_at').order('created_at',{ascending:false}).limit(8).then(({data,error})=>{if(error||!data?.length){host.innerHTML='<article class="news-item"><b>Пока нет новостей</b><p>Следи за обновлениями SUPPORTSVISUALS здесь.</p></article>';return}host.innerHTML=data.map(n=>'<article class="news-item"><time>'+new Date(n.created_at).toLocaleDateString('ru-RU')+'</time><h3>'+String(n.title).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))+'</h3><p>'+String(n.body).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))+'</p></article>').join('')})})();
 </script>
-<script src="/account.js?v=26"></script>
+<script src="/account.js?v=27"></script>
 
 <script>
 (()=> {
