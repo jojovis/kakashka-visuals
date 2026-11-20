@@ -95,6 +95,26 @@ details p{max-width:720px;margin:12px 0 0;color:var(--muted);font-size:13px;line
 .reveal.is-visible{opacity:1;transform:translateY(0)}
 @media(max-width:760px){.creators-grid{grid-template-columns:1fr}.creator-card{min-height:0}}
 @media(prefers-reduced-motion:reduce){.hero-note,.hero-note .symbol{animation:none}.reveal{opacity:1;transform:none;transition:none}.feature:hover,.creator-card:hover,.card:hover{transform:none}}
+
+/* Полноэкранная навигация по разделам */
+main{position:relative;min-height:calc(100vh - 160px)}
+main>.page-view{display:none;min-height:calc(100vh - 160px)}
+main>.page-view.is-active{display:block;animation:svPageEnter .38s cubic-bezier(.2,.7,.2,1) both}
+@keyframes svPageEnter{from{opacity:0;transform:translateY(14px);filter:blur(3px)}to{opacity:1;transform:translateY(0);filter:blur(0)}}
+.navlinks a{position:relative;padding:9px 0;white-space:nowrap}
+.navlinks a[aria-current="page"]{color:var(--text)}
+.navlinks a[aria-current="page"]:after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;border-radius:2px;background:var(--accent)}
+.page-indicator{display:flex;justify-content:center;gap:7px;padding:0 0 24px}
+.page-indicator button{width:7px;height:7px;padding:0;border:0;border-radius:99px;background:#555064;cursor:pointer;transition:all .2s}
+.page-indicator button.active{width:23px;background:var(--accent)}
+@media(max-width:760px){
+ .nav{gap:12px}
+ .navlinks{display:flex;flex:1;min-width:0;gap:17px;overflow-x:auto;scrollbar-width:none;padding:0 2px}
+ .navlinks::-webkit-scrollbar{display:none}
+ .navlinks a{font-size:11px}
+}
+@media(prefers-reduced-motion:reduce){main>.page-view.is-active{animation:none}}
+
 </style>
 </head>
 <body>
@@ -173,4 +193,55 @@ details p{max-width:720px;margin:12px 0 0;color:var(--muted);font-size:13px;line
 (()=>{const host=document.getElementById('sv-news-list');if(!host||!window.supabase)return;const db=window.supabase.createClient('https://uaenplgzrrymroozeiwt.supabase.co','sb_publishable_IkFRP8vNV-jaIWPlZt8YUA_lLu1qXes');db.from('project_news').select('title,body,created_at').order('created_at',{ascending:false}).limit(8).then(({data,error})=>{if(error||!data?.length){host.innerHTML='<article class="news-item"><b>Пока нет новостей</b><p>Следи за обновлениями SUPPORTSVISUALS здесь.</p></article>';return}host.innerHTML=data.map(n=>'<article class="news-item"><time>'+new Date(n.created_at).toLocaleDateString('ru-RU')+'</time><h3>'+String(n.title).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))+'</h3><p>'+String(n.body).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))+'</p></article>').join('')})})();
 </script>
 <script src="/account.js?v=23"></script>
+
+<script>
+(()=> {
+ const main=document.querySelector('main');
+ if(!main)return;
+ const pages=[...main.querySelectorAll(':scope > section')];
+ const nav=[...document.querySelectorAll('.navlinks a[href^="#"]')];
+ const names={top:'Главная',features:'Возможности',creators:'Команда',news:'Новости',pricing:'Тарифы',faq:'Вопросы',music:'Музыка',contacts:'Поддержка'};
+ pages.forEach((page,i)=>{
+   if(!page.id)page.id='top';
+   page.classList.add('page-view');
+   page.dataset.page=page.id;
+   page.setAttribute('aria-hidden','true');
+ });
+ const ids=pages.map(p=>p.id);
+ const indicator=document.createElement('div');
+ indicator.className='page-indicator';
+ indicator.setAttribute('aria-label','Переход между разделами');
+ ids.forEach((id,i)=>{
+   const b=document.createElement('button');
+   b.type='button';b.title=names[id]||id;b.setAttribute('aria-label','Открыть раздел: '+(names[id]||id));
+   b.addEventListener('click',()=>go(id));
+   indicator.append(b);
+ });
+ main.append(indicator);
+ function go(id,update=true){
+   const target=ids.includes(id)?id:'top';
+   pages.forEach(p=>{
+     const active=p.id===target;
+     p.classList.toggle('is-active',active);
+     p.setAttribute('aria-hidden',String(!active));
+   });
+   [...indicator.children].forEach((b,i)=>b.classList.toggle('active',ids[i]===target));
+   nav.forEach(a=>{
+     const active=a.getAttribute('href')==='#'+target;
+     if(active)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');
+   });
+   if(update && location.hash!=='#'+target)history.pushState(null,'','#'+target);
+   window.scrollTo({top:0,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
+ }
+ document.addEventListener('click',e=>{
+   const a=e.target.closest('a[href^="#"]');
+   if(!a)return;
+   const id=a.getAttribute('href').slice(1);
+   if(ids.includes(id)){e.preventDefault();go(id);}
+ });
+ window.addEventListener('popstate',()=>go(location.hash.slice(1)||'top',false));
+ go(location.hash.slice(1)||'top',false);
+})();
+</script>
+
 </body></html>
