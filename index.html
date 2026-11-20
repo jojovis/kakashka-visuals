@@ -115,6 +115,55 @@ main>.page-view.is-active{display:block;animation:svPageEnter .38s cubic-bezier(
 }
 @media(prefers-reduced-motion:reduce){main>.page-view.is-active{animation:none}}
 
+
+/* Красивые кнопки интерфейса */
+.btn,.navbtn{
+ position:relative;isolation:isolate;overflow:hidden;gap:9px;
+ min-height:48px;padding:0 22px;border:1px solid #d6bdff55;border-radius:13px;
+ background:linear-gradient(135deg,#d2b5ff 0%,#b58aff 48%,#9563ed 100%);
+ color:#17111f;font-size:13px;font-weight:800;letter-spacing:.01em;
+ box-shadow:0 8px 22px #9b69ef2b,inset 0 1px 0 #ffffff9c;
+ transition:transform .22s ease,box-shadow .22s ease,filter .22s ease,border-color .22s ease;
+}
+.btn:before,.navbtn:before{
+ content:"";position:absolute;z-index:-1;inset:0;pointer-events:none;
+ background:linear-gradient(115deg,transparent 20%,#ffffff55 48%,transparent 72%);
+ transform:translateX(-130%);transition:transform .55s ease;
+}
+.btn:hover,.navbtn:hover{
+ transform:translateY(-3px);filter:brightness(1.07);
+ box-shadow:0 13px 30px #9b69ef55,inset 0 1px 0 #ffffffb0;
+}
+.btn:hover:before,.navbtn:hover:before{transform:translateX(130%)}
+.btn:active,.navbtn:active{transform:translateY(-1px) scale(.98);box-shadow:0 4px 12px #9b69ef33}
+.btn.secondary{
+ color:#eee7fa;background:linear-gradient(145deg,#242132,#191823);
+ border-color:#514365;box-shadow:inset 0 1px 0 #ffffff0d,0 6px 18px #0002;
+}
+.btn.secondary:hover{
+ color:#fff;border-color:#b58affaa;background:linear-gradient(145deg,#302640,#201b2b);
+ box-shadow:0 12px 26px #0004,0 0 0 3px #b58aff12;
+}
+.navbtn{min-height:43px;padding:0 18px;border-radius:12px}
+.actions .btn{min-width:150px}
+.card .btn{min-height:49px}
+.page-indicator{align-items:center;gap:9px;padding:2px 0 30px}
+.page-indicator button{
+ width:9px;height:9px;border:1px solid #8d78a8;background:#302b3c;
+ box-shadow:0 2px 8px #0005;transition:width .25s ease,background .25s ease,box-shadow .25s ease,transform .25s ease;
+}
+.page-indicator button:hover{transform:scale(1.2);background:#9b78c9}
+.page-indicator button.active{
+ width:30px;height:9px;border-color:#d8c0ff;
+ background:linear-gradient(90deg,#d2b5ff,#9563ed);
+ box-shadow:0 0 16px #b58aff77;
+}
+a:focus-visible,button:focus-visible{outline:2px solid #d7bdff;outline-offset:4px}
+@media(prefers-reduced-motion:reduce){
+ .btn,.navbtn,.btn:before,.navbtn:before,.page-indicator button{transition:none}
+ .btn:hover,.navbtn:hover{transform:none}
+}
+
 </style>
 </head>
 <body>
