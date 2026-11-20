@@ -19,7 +19,7 @@ a{color:inherit;text-decoration:none}
 .nav{height:76px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
 .brand{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:800;letter-spacing:.08em}
 .mark{width:38px;height:38px;display:grid;place-items:center;position:relative;overflow:hidden;border:1px solid #d8c1ff66;border-radius:13px;background:linear-gradient(145deg,#d6bdff 0%,#a879f2 48%,#7547c9 100%);box-shadow:0 5px 22px #9b69ef44,inset 0 1px 0 #ffffff80;color:#17111f;font-size:25px;font-weight:800;font-style:italic;letter-spacing:-.12em;text-shadow:0 1px 0 #fff8}.mark:after{content:"✦";position:absolute;right:3px;top:1px;font-size:9px;font-style:normal;color:#fff;letter-spacing:0;text-shadow:0 1px 5px #6e43b7}
-.navlinks{display:flex;gap:28px;color:var(--muted);font-size:13px}
+.news-list{display:grid;gap:12px}.news-item{padding:20px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}.news-item time{color:var(--accent);font-size:11px}.news-item p{margin:8px 0 0;color:var(--muted);font-size:13px;white-space:pre-wrap}#sv-loader{position:fixed;inset:0;z-index:2000;display:grid;place-items:center;background:#101018;transition:opacity .55s ease,visibility .55s ease}#sv-loader.done{opacity:0;visibility:hidden}#sv-loader .mark{width:76px;height:76px;border-radius:24px;font-size:48px;animation:sv-loader-pulse 1s ease-in-out infinite alternate}@keyframes sv-loader-pulse{from{transform:scale(.88) rotate(-7deg);box-shadow:0 0 12px #9b69ef33}to{transform:scale(1.06) rotate(7deg);box-shadow:0 0 44px #9b69ef99}}.navlinks{display:flex;gap:28px;color:var(--muted);font-size:13px}
 .navlinks a:hover,.footer a:hover{color:var(--text)}
 .navbtn,.btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 18px;border:1px solid transparent;border-radius:9px;background:var(--accent);color:#17111f;font-size:13px;font-weight:800;transition:background .18s,transform .18s}
 .navbtn:hover,.btn:hover{background:#c7a8ff;transform:translateY(-1px)}
@@ -96,11 +96,11 @@ details p{max-width:720px;margin:12px 0 0;color:var(--muted);font-size:13px;line
 @media(prefers-reduced-motion:reduce){.hero-note,.hero-note .symbol{animation:none}.reveal{opacity:1;transform:none;transition:none}.feature:hover,.creator-card:hover,.card:hover{transform:none}}
 </style>
 </head>
-<body>
+<body>\n<div id="sv-loader" aria-label="Загрузка SUPPORTSVISUALS"><span class="mark">S</span></div>
 <canvas id="sv-snow" aria-hidden="true"></canvas>
 <header class="nav wrap">
 <a class="brand" href="#top"><span class="mark" aria-label="Логотип S">S</span> SUPPORTSVISUALS</a>
-<nav class="navlinks" aria-label="Основная навигация"><a href="#features">Возможности</a><a href="#creators">Создатели</a><a href="#music">Музыка</a><a href="#pricing">Тарифы</a><a href="#faq">Вопросы</a></nav>
+<nav class="navlinks" aria-label="Основная навигация"><a href="#features">Возможности</a><a href="#creators">Создатели</a><a href="#music">Музыка</a><a href="#news">Новости</a><a href="#pricing">Тарифы</a><a href="#faq">Вопросы</a></nav>
 <a class="navbtn" id="sv-open-account" href="#account" onclick="event.preventDefault();document.dispatchEvent(new Event('sv-open-account'))">Личный кабинет</a>
 </header>
 <main id="top">
@@ -129,6 +129,7 @@ details p{max-width:720px;margin:12px 0 0;color:var(--muted);font-size:13px;line
 <article class="creator-card"><div class="creator-avatar">А</div><div class="creator-role">ЧИЛ БРО</div><h3>Алексей</h3><p>Чил бро команды. Поддерживает хороший вайб.</p></article>
 </div>
 </section>
+<section class="section wrap" id="news"><div class="section-head"><div><div class="kicker">02 / Обновления</div><h2>Новости <span>проекта.</span></h2></div><p>Последние изменения и объявления SUPPORTSVISUALS.</p></div><div id="sv-news-list" class="news-list"><article class="news-item">Загружаем новости...</article></div></section>
 <section class="pricing" id="pricing"><div class="section wrap">
 <div class="section-head"><div><div class="kicker">02 / Тарифы</div><h2>Выбери свой <span>доступ.</span></h2></div><p>Три понятных варианта. Выбирай срок, который подходит именно тебе.</p></div>
 <div class="prices">
@@ -156,6 +157,7 @@ details p{max-width:720px;margin:12px 0 0;color:var(--muted);font-size:13px;line
 </main>
 <footer class="footer wrap"><a class="brand" href="#top"><span class="mark">S</span> SUPPORTSVISUALS</a><span>© 2026 SUPPORTSVISUALS</span><a href="#top">Наверх ↑</a></footer>
 <script>
+(()=>{const loader=document.getElementById('sv-loader');const hide=()=>loader&&loader.classList.add('done');if(document.readyState==='complete')setTimeout(hide,350);else addEventListener('load',()=>setTimeout(hide,350),{once:true});setTimeout(hide,3000);})();
 (()=>{const canvas=document.getElementById('sv-snow');if(!canvas||matchMedia('(prefers-reduced-motion: reduce)').matches)return;const ctx=canvas.getContext('2d');if(!ctx)return;let w=0,h=0,flakes=[];const count=()=>Math.min(95,Math.max(34,Math.round(innerWidth/15)));function resize(){const dpr=Math.min(devicePixelRatio||1,2);w=innerWidth;h=innerHeight;canvas.width=Math.round(w*dpr);canvas.height=Math.round(h*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);flakes=Array.from({length:count()},()=>({x:Math.random()*w,y:Math.random()*h,r:.7+Math.random()*2.1,v:.35+Math.random()*.9,s:.25+Math.random()*.65,a:.25+Math.random()*.55,p:Math.random()*6.28}))}function frame(){ctx.clearRect(0,0,w,h);for(const f of flakes){f.y+=f.v;f.x+=Math.sin(f.p+=.008)*f.s;if(f.y>h+5){f.y=-5;f.x=Math.random()*w}if(f.x>w+5)f.x=-5;if(f.x< -5)f.x=w+5;ctx.beginPath();ctx.arc(f.x,f.y,f.r,0,Math.PI*2);ctx.fillStyle='rgba(239,232,255,'+f.a+')';ctx.fill()}requestAnimationFrame(frame)}addEventListener('resize',resize,{passive:true});resize();frame()})();
 </script>
 <script>
@@ -165,5 +167,8 @@ details p{max-width:720px;margin:12px 0 0;color:var(--muted);font-size:13px;line
 (()=>{window.__svInstallPrompt=null;const desktop=window.matchMedia('(min-width: 768px) and (hover: hover) and (pointer: fine)').matches&&!/Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent||'');if(!desktop){document.querySelector('link[rel="manifest"]')?.remove();return;}window.addEventListener('beforeinstallprompt',event=>{event.preventDefault();window.__svInstallPrompt=event});window.addEventListener('appinstalled',()=>{window.__svInstallPrompt=null;const b=document.getElementById('sv-install-app');if(b){b.textContent='Клиент установлен';b.disabled=true}});if('serviceWorker' in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));})();
 </script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+(()=>{const host=document.getElementById('sv-news-list');if(!host||!window.supabase)return;const db=window.supabase.createClient('https://uaenplgzrrymroozeiwt.supabase.co','sb_publishable_IkFRP8vNV-jaIWPlZt8YUA_lLu1qXes');db.from('project_news').select('title,body,created_at').order('created_at',{ascending:false}).limit(8).then(({data,error})=>{if(error||!data?.length){host.innerHTML='<article class="news-item"><b>Пока нет новостей</b><p>Следи за обновлениями SUPPORTSVISUALS здесь.</p></article>';return}host.innerHTML=data.map(n=>'<article class="news-item"><time>'+new Date(n.created_at).toLocaleDateString('ru-RU')+'</time><h3>'+String(n.title).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))+'</h3><p>'+String(n.body).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))+'</p></article>').join('')})})();
+</script>
 <script src="/account.js?v=17"></script>
 </body></html>
