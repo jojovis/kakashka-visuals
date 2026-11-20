@@ -81,7 +81,8 @@ const personal=document.createElement('section'),subscription=document.createEle
 const move=(el,to)=>{if(el)to.append(el)};
 move(nodes[0],personal);move(nodes[1],subscription);move(nodes[2],subscription);move(nodes[3],subscription);move(nodes[4],subscription);
 move(nodes[5],personal);move(nodes[6],support);
-move(rawProfile.querySelector('#sv-admin'),adminPane);
+const adminNode=rawProfile.querySelector('#sv-admin');
+if(adminNode)move(adminNode,adminPane);
 move(rawProfile.querySelector('#sv-logout'),personal);
 move(rawProfile.querySelector('#sv-profile-settings'),personal);
 const referralStats=nodes[nodes.length-1];if(referralStats){referralStats.id='sv-profile-stats';move(referralStats,referrals)}
@@ -134,6 +135,6 @@ document.getElementById('sv-generate').onsubmit=async e=>{e.preventDefault();con
 const r=await db.rpc('admin_list_users');const host=document.getElementById('sv-users');if(r.error){host.textContent=r.error.message;return}host.innerHTML='<table class="sv-table"><tr><th>Email</th><th>Подписка</th><th></th></tr>'+r.data.map(x=>'<tr><td>'+esc(x.email)+'</td><td>'+(x.revoked_at?'Отозвана':x.is_lifetime?'Навсегда':x.expires_at?new Date(x.expires_at).toLocaleDateString('ru-RU'):'—')+'</td><td>'+(x.plan&&!x.revoked_at?'<button data-revoke="'+x.user_id+'">Отозвать</button>':'')+'</td></tr>').join('')+'</table>';host.querySelectorAll('[data-revoke]').forEach(b=>b.onclick=async()=>{if(!confirm('Отозвать подписку?'))return;const z=await db.rpc('admin_revoke_subscription',{p_user_id:b.dataset.revoke});if(z.error)alert(z.error.message);else admin()})}
 async function loadPublicNews(){const host=document.getElementById('sv-news-list');if(!host)return;const r=await db.from('project_news').select('id,title,body,created_at').order('created_at',{ascending:false}).limit(10);if(r.error){host.textContent='Новости временно недоступны.';return}host.innerHTML=r.data.length?r.data.map(x=>'<article class="news-item"><time>'+new Date(x.created_at).toLocaleString('ru-RU')+'</time><h3>'+esc(x.title)+'</h3><p>'+esc(x.body)+'</p></article>').join(''):'<article class="news-item">Пока новостей нет.</article>';}
 loadPublicNews();
-window.openKvAccount=open;document.addEventListener('sv-open-account',open);const nav=document.querySelector('.nav');if(!accountLink&&nav){const b=document.createElement('a');b.className='navbtn';b.href='#account';b.textContent='Личный кабинет ↗';b.onclick=e=>{e.preventDefault();open()};nav.append(b)}const mobile=document.createElement('button');mobile.textContent='Личный кабинет ↗';mobile.style='position:fixed;right:18px;bottom:18px;z-index:50;background:#b58aff;color:#17111f;border:0;padding:12px 16px;border-radius:10px;font:700 12px Manrope,Arial,sans-serif;box-shadow:0 8px 28px #0008';mobile.onclick=open;document.body.append(mobile);
+window.openKvAccount=open;document.addEventListener('sv-open-account',open);const nav=document.querySelector('.nav');const accountLink=document.getElementById('sv-open-account');if(!accountLink&&nav){const b=document.createElement('a');b.className='navbtn';b.href='#account';b.textContent='Личный кабинет ↗';b.onclick=e=>{e.preventDefault();open()};nav.append(b)}const mobile=document.createElement('button');mobile.textContent='Личный кабинет ↗';mobile.style='position:fixed;right:18px;bottom:18px;z-index:50;background:#b58aff;color:#17111f;border:0;padding:12px 16px;border-radius:10px;font:700 12px Manrope,Arial,sans-serif;box-shadow:0 8px 28px #0008';mobile.onclick=open;document.body.append(mobile);
 db.auth.onAuthStateChange(()=>{});
 })();
