@@ -72,6 +72,13 @@ const densityCss=document.createElement('style');densityCss.textContent=`
 }
 @media(max-width:650px){.sv-modal{max-height:90vh;padding:20px 15px}.sv-profile-heading h2{font-size:19px}}
 `;document.head.append(densityCss);
+const personalGridFix=document.createElement('style');personalGridFix.textContent=`
+@media(min-width:900px){
+ #sv-pane-personal[style*="display: block"],#sv-pane-subscription[style*="display: block"]{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;align-items:start}
+ #sv-pane-personal>.sv-card,#sv-pane-subscription>.sv-card{min-width:0;margin:0}
+ #sv-pane-personal>#sv-logout,#sv-pane-subscription>form,#sv-pane-subscription>#sv-msg,#sv-pane-subscription>details{grid-column:1/-1}
+}
+`;document.head.append(personalGridFix);
 let tab='login';const content=()=>document.getElementById('sv-content');const msg=t=>{const e=document.getElementById('sv-msg');if(e)e.textContent=t||''};
 function open(){panel.style.cssText='';const modal=panel.querySelector('.sv-modal');modal.style.cssText='';panel.classList.add('open');render().catch(err=>{content().innerHTML='<p class="sv-msg">Ошибка: '+esc(err.message)+'</p>';});}function close(){panel.classList.remove('open');panel.style.cssText='display:none!important'}panel.querySelector('.sv-close').onclick=close;panel.querySelector('.sv-shade').onclick=close;
 function field(label,name,type){return '<label>'+label+'<input name="'+name+'" type="'+type+'" required></label>'}
