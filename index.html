@@ -165,6 +165,97 @@ a:focus-visible,button:focus-visible{outline:2px solid #d7bdff;outline-offset:4p
 }
 
 </style>
+<style id="sv-refresh-theme">
+
+/* SUPPORTSVISUALS — refreshed visual system */
+:root{color-scheme:dark;--bg:#080c14;--surface:#101a28;--surface2:#172538;--line:#26384b;--text:#f1f7fb;--muted:#9aafc1;--accent:#72e2d0;--accent2:#719bff;--max:1120px}
+html{scroll-padding-top:92px}
+body{background:radial-gradient(ellipse at 12% 0%,#16334666,transparent 38%),radial-gradient(ellipse at 90% 28%,#243a6a55,transparent 36%),var(--bg);color:var(--text);font-family:Manrope,system-ui,sans-serif}
+body:before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.18;background-image:linear-gradient(#7ee8dc0b 1px,transparent 1px),linear-gradient(90deg,#7ee8dc0b 1px,transparent 1px);background-size:54px 54px;mask-image:linear-gradient(to bottom,#000,transparent 85%)}
+.wrap{width:min(var(--max),calc(100% - 44px))}
+.nav{position:sticky;top:0;z-index:100;height:78px;border-bottom:1px solid #8ca8bd22;background:#080c14d9;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+.brand{font-size:12px;letter-spacing:.14em}
+.mark{width:40px;height:40px;border:1px solid #a4fff277;border-radius:14px;background:linear-gradient(145deg,#a8fff0,#56cbbd 58%,#4779a8);box-shadow:0 8px 28px #54d7c344,inset 0 1px #fff;color:#07171b}
+.mark:after{color:#fff}
+.navlinks{gap:24px;color:#a3b5c6}
+.navlinks a{font-size:12px}
+.navlinks a:hover,.footer a:hover{color:var(--accent)}
+.navlinks a[aria-current=page]:after{background:var(--accent)}
+.navbtn,.btn{border-radius:12px;background:linear-gradient(120deg,#9affeb,#65d5c7 54%,#79a8ff);color:#06191b;border:1px solid #b4fff288;box-shadow:0 8px 24px #4ed8c329,inset 0 1px #fff9}
+.navbtn:hover,.btn:hover{background:linear-gradient(120deg,#c1fff4,#83e9dc 54%,#a0bdff);box-shadow:0 12px 30px #4ed8c344}
+.btn.secondary{background:#111d2b;border-color:#344b60;color:#eaf4fb;box-shadow:inset 0 1px #ffffff0b}
+.btn.secondary:hover{background:#192b3e;border-color:#72e2d0;color:#fff}
+.hero{position:relative;padding:112px 0 100px;gap:72px}
+.hero:before{content:"";position:absolute;z-index:-1;right:3%;top:10%;width:380px;height:380px;border-radius:50%;background:#53d7c51c;filter:blur(75px)}
+.kicker,.label,.creator-role{color:var(--accent);letter-spacing:.16em}
+h1{font-size:clamp(46px,7vw,78px);line-height:1.01;letter-spacing:-.065em;margin:18px 0 22px}
+h1 span,h2 span{color:var(--accent);text-shadow:0 0 32px #72e2d022}
+.lead{font-size:15px;color:#a9bbcb;line-height:1.9}
+.actions{gap:14px}
+.actions .btn{min-width:160px}
+.hero-note{padding:30px;border:1px solid #5d8e9b55;border-radius:22px;background:linear-gradient(145deg,#172b3aee,#101725ee);box-shadow:0 24px 70px #0005, inset 0 1px #ffffff12}
+.hero-note .symbol{width:54px;height:54px;border-radius:17px;background:#72e2d01b;color:var(--accent);border:1px solid #72e2d044}
+.hero-note strong{font-size:17px}
+.hero-note p{color:#a5b9c9}
+.section{padding:92px 0}
+.section-head{margin-bottom:36px}
+h2{font-size:clamp(34px,4.8vw,52px);letter-spacing:-.055em}
+.section-head>p{color:#9aafc1}
+.features,.prices,.creators-grid{gap:18px}
+.feature,.card,.creator-card{border:1px solid #31465a;border-radius:19px;background:linear-gradient(145deg,#122131eF,#0e1724f2);box-shadow:0 14px 40px #0002,inset 0 1px #ffffff0a}
+.feature{padding:27px}
+.feature .icon{width:46px;height:46px;border:1px solid #72e2d033;border-radius:14px;background:#72e2d014;color:var(--accent)}
+.feature h3{font-size:16px}
+.feature p,.desc{color:#9aafc1}
+.feature:hover,.creator-card:hover{transform:translateY(-6px);border-color:#72e2d0aa;box-shadow:0 22px 52px #0005,0 0 35px #72e2d00c}
+.creator-card{padding:28px;min-height:220px}
+.creator-avatar{border-radius:16px;background:linear-gradient(145deg,#9affeb,#68cfc5 55%,#789fff);color:#07171b;box-shadow:0 10px 28px #58d6c533}
+.pricing{border-block:1px solid #26394b;background:linear-gradient(180deg,#0c1420dd,#0b111cfa)}
+.card{padding:27px;min-height:390px}
+.card.best{border-color:#72e2d0;background:linear-gradient(155deg,#173342,#10202c);box-shadow:0 20px 60px #0005,0 0 40px #72e2d012}
+.tag{background:var(--accent);color:#06191b;border-radius:8px}
+.card h3{font-size:23px}
+.price{font-size:50px}
+.price small{color:var(--accent)}
+.period{color:#9aafc1}
+.card ul{border-color:#2a4053}
+.card li{color:#d7e5ed}
+.card li:before{color:var(--accent)}
+.fine{color:#8299ad}
+.news-item{border:1px solid #2d4358;border-radius:15px;background:linear-gradient(145deg,#122131,#0f1825);padding:23px}
+.news-item time{color:var(--accent)}
+.news-item p{color:#a3b6c6}
+details{border-color:#2b4053;padding:21px 0}
+summary{font-size:15px}
+summary:after{color:var(--accent)}
+details p{color:#a3b6c6}
+.music-panel{padding:20px!important;border:1px solid #36546a!important;border-radius:20px!important;background:linear-gradient(145deg,#142536,#0d1724)!important;box-shadow:0 20px 55px #0004}
+.music-panel iframe{border:1px solid #ffffff12}
+.contact{padding:40px;border:1px solid #38556a;border-radius:22px;background:radial-gradient(ellipse at 100% 0%,#28616a55,transparent 50%),linear-gradient(145deg,#142838,#101a28);box-shadow:0 22px 55px #0004}
+.contact h2{margin-bottom:0}
+.footer{border-color:#26394b;color:#849caf;min-height:94px}
+.footer .brand{color:#eaf4fb}
+.page-indicator{padding:0 0 34px}
+.page-indicator button{background:#263b4c;border-color:#476174}
+.page-indicator button.active{background:linear-gradient(90deg,#9affeb,#65d5c7,#79a8ff);border-color:#b4fff2;box-shadow:0 0 18px #72e2d066}
+#sv-snow{opacity:.35}
+a:focus-visible,button:focus-visible{outline:2px solid #9affeb;outline-offset:4px}
+@media(max-width:760px){
+ .wrap{width:min(var(--max),calc(100% - 32px))}
+ .nav{height:68px}
+ .navlinks{gap:16px}
+ .navlinks a{font-size:11px}
+ .hero{padding:72px 0 60px;gap:28px}
+ .hero:before{width:240px;height:240px;right:0}
+ .section{padding:68px 0}
+ .feature,.creator-card,.card{border-radius:16px}
+ .card{min-height:0}
+ .contact{padding:26px;border-radius:18px}
+ .footer{padding:22px 0}
+}
+@media(prefers-reduced-motion:reduce){.hero-note,.hero-note .symbol{animation:none}.feature:hover,.creator-card:hover,.card:hover{transform:none}}
+
+</style>
 </head>
 <body>
 <div id="sv-loader" aria-label="Загрузка SUPPORTSVISUALS"><span class="mark">S</span></div>
